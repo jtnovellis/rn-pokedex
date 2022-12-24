@@ -2,13 +2,14 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Image } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import FavoriteScreen from '../screens/FavoriteScreen';
-import HomeScreen from '../screens/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+import HomeScreenNavigation from './HomeScreenNavigation';
 
 type RootStackParamList = {
   Home: undefined;
   Profile: undefined;
   Favorite: undefined;
+  Pokemon: { pokemonId: number } | undefined;
 };
 
 const Tab = createBottomTabNavigator<RootStackParamList>();
@@ -28,8 +29,9 @@ export default function NavigationTab() {
       />
       <Tab.Screen
         name='Home'
-        component={HomeScreen}
+        component={HomeScreenNavigation}
         options={{
+          headerShown: false,
           tabBarLabel: '',
           tabBarIcon: () => renderPokeBall(),
         }}
