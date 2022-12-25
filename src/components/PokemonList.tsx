@@ -1,10 +1,25 @@
-import { View, Text } from 'react-native';
-import React from 'react';
+import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { PokemonType } from '../types';
 
-export default function PokemonList() {
+interface PokemonListProps {
+  pokemons: PokemonType[];
+}
+
+export default function PokemonList({ pokemons }: PokemonListProps) {
   return (
-    <View>
-      <Text>PokemonList</Text>
-    </View>
+    <FlatList
+      data={pokemons}
+      numColumns={2}
+      showsVerticalScrollIndicator={false}
+      keyExtractor={(pokemon) => String(pokemon.id)}
+      renderItem={({ item }) => <Text>{item.name}</Text>}
+      contentContainerStyle={styles.flatListContainer}
+    />
   );
 }
+
+const styles = StyleSheet.create({
+  flatListContainer: {
+    paddingHorizontal: 5,
+  },
+});

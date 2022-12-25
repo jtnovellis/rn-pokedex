@@ -33,7 +33,7 @@ export default function HomeScreen() {
 
   return (
     <View>
-      <PokemonList />
+      <PokemonList pokemons={pokemons} />
     </View>
   );
 }
