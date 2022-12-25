@@ -1,9 +1,5 @@
-import { View, Text, SafeAreaView } from 'react-native';
+import NavigationTab from './navigation/NavigationTab';
 
 export default function Main() {
-  return (
-    <SafeAreaView>
-      <Text>Main</Text>
-    </SafeAreaView>
-  );
+  return <NavigationTab />;
 }
