@@ -16,7 +16,7 @@ const Tab = createBottomTabNavigator<RootStackParamList>();
 
 export default function NavigationTab() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator initialRouteName='Home'>
       <Tab.Screen
         name='Favorite'
         component={FavoriteScreen}

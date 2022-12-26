@@ -1,9 +1,8 @@
 import { View, Text } from 'react-native';
+import LoginForm from '../components/auth/LoginForm';
+import UserData from '../components/auth/UserData';
 
 export default function ProfileScreen() {
-  return (
-    <View>
-      <Text>Profile</Text>
-    </View>
-  );
+  const auth = null;
+  return <View>{auth ? <UserData /> : <LoginForm />}</View>;
 }
