@@ -1,11 +1,11 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Image } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import FavoriteScreen from '../screens/FavoriteScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import HomeScreenNavigation from './HomeScreenNavigation';
+import FavoriteStack from './FavoriteStack';
 
-type RootStackParamList = {
+export type RootStackParamList = {
   Home: undefined;
   Profile: undefined;
   Favorite: undefined;
@@ -19,7 +19,7 @@ export default function NavigationTab() {
     <Tab.Navigator initialRouteName='Home'>
       <Tab.Screen
         name='Favorite'
-        component={FavoriteScreen}
+        component={FavoriteStack}
         options={{
           tabBarLabel: 'Favorites',
           tabBarIcon: ({ color, size }) => (

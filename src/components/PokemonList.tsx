@@ -9,8 +9,8 @@ import PokemonCard from './PokemonCard';
 
 interface PokemonListProps {
   pokemons: PokemonType[];
-  fetchPokemons: () => Promise<void>;
-  nextUrl: string | null;
+  fetchPokemons?: () => Promise<void>;
+  nextUrl?: string | null;
 }
 
 export default function PokemonList({
@@ -19,7 +19,7 @@ export default function PokemonList({
   nextUrl,
 }: PokemonListProps) {
   function loadPokemons() {
-    if (nextUrl) {
+    if (nextUrl && fetchPokemons) {
       fetchPokemons();
     }
   }
@@ -32,14 +32,16 @@ export default function PokemonList({
       keyExtractor={(pokemon) => String(pokemon.id)}
       renderItem={({ item }) => <PokemonCard pokemon={item} />}
       contentContainerStyle={styles.flatListContainer}
-      onEndReached={loadPokemons}
+      onEndReached={nextUrl ? loadPokemons : null}
       onEndReachedThreshold={0.1}
       ListFooterComponent={
-        <ActivityIndicator
-          size='large'
-          style={styles.spinner}
-          color='#aeaeae'
-        />
+        nextUrl ? (
+          <ActivityIndicator
+            size='large'
+            style={styles.spinner}
+            color='#aeaeae'
+          />
+        ) : null
       }
     />
   );

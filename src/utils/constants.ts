@@ -41,3 +41,5 @@ export const POKEMON_TYPE_COLORS: PokemonColorTypes = {
   dark: '#705848',
   fairy: '#EE99AC',
 };
+
+export const FAVORITE_STORAGE = 'favorites';

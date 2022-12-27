@@ -1,5 +1,5 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { ScrollView, Text } from 'react-native';
+import { ScrollView } from 'react-native';
 import { RootStackParamList } from '../navigation/HomeScreenNavigation';
 import { getPokemonDetail } from '../api/pokemon';
 import { useEffect, useState } from 'react';
@@ -7,6 +7,8 @@ import Header from '../components/Pokemon/Header';
 import Type from '../components/Pokemon/Type';
 import Stats from '../components/Pokemon/Stats';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import Favorite from '../components/Pokemon/Favorite';
+import useAuth from '../hooks/useAuth';
 
 type PokemonProps = NativeStackScreenProps<RootStackParamList, 'Pokemon'>;
 
@@ -15,10 +17,11 @@ export default function Pokemon({
   route: { params },
 }: PokemonProps) {
   const [pokemon, setPokemon] = useState<any | null>(null);
+  const { auth } = useAuth();
 
   useEffect(() => {
     navigation.setOptions({
-      headerRight: () => null,
+      headerRight: () => auth && <Favorite id={pokemon?.id} />,
       headerLeft: () => (
         <Icon
           name='arrow-left'
@@ -29,7 +32,7 @@ export default function Pokemon({
         />
       ),
     });
-  }, [navigation, params]);
+  }, [navigation, params, pokemon]);
 
   useEffect(() => {
     if (params) {
