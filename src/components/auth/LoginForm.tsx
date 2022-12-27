@@ -8,8 +8,13 @@ import {
 } from 'react-native';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { user, userDetails } from '../../utils/userDb';
+import { useState } from 'react';
+import useAuth from '../../hooks/useAuth';
 
 export default function LoginForm() {
+  const { login, logout } = useAuth();
+  const [error, setError] = useState('');
   const formik = useFormik({
     initialValues: {
       username: '',
@@ -18,7 +23,13 @@ export default function LoginForm() {
     validationSchema: Yup.object(validationSchema()),
     validateOnChange: false,
     onSubmit: (values) => {
-      console.log('data', values);
+      setError('');
+      const { username, password } = values;
+      if (username !== user.username || password !== user.password) {
+        setError('The username or password is not valid');
+      } else {
+        login(userDetails);
+      }
     },
   });
   return (
@@ -42,6 +53,7 @@ export default function LoginForm() {
       <Button title='Sign in' onPress={() => formik.handleSubmit()} />
       <Text style={styles.error}>{formik.errors.username}</Text>
       <Text style={styles.error}>{formik.errors.password}</Text>
+      <Text style={styles.error}>{error}</Text>
     </View>
   );
 }

@@ -9,3 +9,15 @@ export const userDetails = {
   lastName: 'Toro',
   email: 'jtnovellis88@gmail.com',
 };
+
+export type User = {
+  username: string;
+  password: string;
+};
+
+export type userDetails = {
+  username: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+};
