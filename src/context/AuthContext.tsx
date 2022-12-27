@@ -1,9 +1,15 @@
 import React, { useState, createContext } from 'react';
 import { userDetails } from '../utils/userDb';
 
-export const AuthContext = createContext({
+interface ContextInterface {
+  auth: null | userDetails;
+  login: (user: userDetails) => void;
+  logout: () => void;
+}
+
+export const AuthContext = createContext<ContextInterface>({
   auth: null,
-  login: () => {},
+  login: (user) => {},
   logout: () => {},
 });
 
@@ -22,7 +28,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     setAuth(null);
   };
 
-  const valueContext = {
+  const valueContext: ContextInterface = {
     auth,
     login,
     logout,
