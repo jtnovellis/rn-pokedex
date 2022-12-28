@@ -1,5 +1,7 @@
 import { View, Text, StyleSheet, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+// por alguna razon no puedo agregar un tipo valido como argumento
+// tema para resolver la proxima vex que abra este codigo
 
 export default function NotLogged() {
   const navigation = useNavigation();
